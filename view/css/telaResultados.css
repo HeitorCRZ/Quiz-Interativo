@@ -1,0 +1,242 @@
+* {
+    margin: 0;
+    padding: 0;
+    background: #F1F1F1;
+    box-sizing: border-box;
+    text-align: center;
+    align-items: center;
+
+}
+
+.faixa {
+    width: 1366px;
+    height: 168px;
+    background: var(--TOQUECOR, #3F7856);
+    margin:  0px auto 150px auto;
+    
+}
+
+.faixainicial{
+    width: 1366px;
+    height: 126px;
+    background: #ffffff;
+    margin:  0px auto 150px auto;
+}
+
+.caixabaixa{
+    margin: auto;
+    width: 1366px;
+    height: 286px;
+    background: var(--TOQUECOR, #3F7856);
+    padding-top: 62px;
+}
+.sobrecaixabaixa{
+    color: #FFF;
+    font-family: "Inter", system-ui;
+    font-size: 48px;
+    font-weight: 650;
+    line-height: 52px;
+    background-color: transparent;
+    text-decoration: none;
+    padding-top: 62px;
+
+}
+
+h2 {
+    color: var(--TOQUECOR, #3F7856);
+    text-align: center;
+    /* TITULO PRINCIPAL */
+    font-family: "Fjalla One", system-ui;
+    font-size: 128px;
+    font-weight: 400;
+    margin: 0 auto 97px auto
+}
+.sobreprojeto{
+    display: block;
+    color: #FFF;
+    font-family: "Inter", system-ui;
+    font-size: 48px;
+    font-weight: 650;
+    line-height: 52px;
+    background-color: transparent;
+    text-decoration: none;
+}
+p{
+    color: #000;
+    text-align: center;
+    /* TEXTOS BASICOS */
+    font-family: "Inter", system-ui;
+    font-size: 50px;
+    font-weight: 400;
+    margin: 0 auto 150px auto;
+    word-wrap: break-word;
+}
+
+
+input {
+    width: 1170px;
+    height: 180px;
+    background-color:  #3F7856;
+    display: block;
+    border: none;
+    font-size: 70px;
+
+    margin: 0 auto 97px auto;
+    border-radius: 86px;
+
+}
+
+input::placeholder {
+    color: #FFF;
+    font-family: "Inter", system-ui;
+    font-size: 70px;
+    font-weight: 700;
+    padding-left: 70px;
+}
+
+input::content { 
+    color: #ffffff;
+
+}
+
+button { 
+    background-color:  #3F7856;
+    display: block;
+    border: none;
+    font-size: 70px;
+
+    width: 631px;
+    height: 161px;
+    border-radius: 86px;
+    margin: 0 auto 91px auto;
+
+    color: #FFF;
+
+    font-family: "Inter", system-ui;
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.botaoverdequad{
+    width: 970px;
+    height: 235px;
+    flex-shrink: 0;
+    fill: var(--TOQUECOR, #3F7856);
+    border-radius: 85;
+    color: #FFF;
+    text-align: center;
+    font-family: "Inter", system-ui;
+    font-size: 50px;
+    font-weight: 800;
+}
+.botaovazioquad{
+    width: 970px;
+    height: 235px;
+    border-radius: 85px;
+    border: 5px solid #CFCFCF;
+    background: #F1F1F1;
+    color: #000;
+    font-family: Inter;
+    font-size: 50px;
+    font-weight: 800;
+    margin-bottom: 393px;
+}
+.jatemconta{
+    color: #000;
+    font-family: "Inter", system-ui;
+    font-size: 48px;
+    padding-top: 64px;
+    padding-bottom: 34px;
+    font-weight: 700;
+}
+.entrar{
+    color: var(--TOQUECOR, #3F7856);
+    font-family: "Inter", system-ui;
+    font-size: 48px;
+    font-weight: 650;
+    line-height: 52px;
+    padding-bottom: 60px;
+}
+.ou{
+    color: #000;
+    font-family: "Inter", system-ui;
+    font-size: 50px;
+    font-weight: 400;
+    padding-bottom: 80px;
+}
+.possui-conta p{
+    color: #000;
+    display: block;
+
+    font-family: Inter;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0 auto 34px auto;
+    }
+
+.login { 
+    font-weight: bolder;
+    text-decoration: none;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    color:  #3F7856;
+    font-family: Inter;
+    font-size: 48px;
+    font-weight: 650;
+    line-height: 52px; 
+}
+/* Estilo geral do card */
+.card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    max-width: 1055px;
+}
+
+/* Estilo para a imagem de perfil */
+.profile-img img {
+    border-radius: 50%;
+    width: 245px;  /* ajuste o tamanho conforme necessário */
+    height: 245px; /* ajuste o tamanho conforme necessário */
+    object-fit: cover; /* para manter a proporção da imagem */
+}
+
+/* Estilo para o conteúdo de texto */
+.info {
+    margin-left: 15px;
+}
+
+/* Nome */
+.info h2 {
+    color: #3F7856; /* ajuste a cor conforme necessário */
+    font-family: "Inter";
+    font-size: 40px;
+    font-weight: 600;
+}
+
+/* Texto de descrição */
+.info p {
+    font-size: 30px;
+    color: black;
+    font-family: "Inter";
+    font-weight: 400;
+    text-align: justify;
+}
+
+/* Link para o currículo */
+.info a {
+    color: #3F7856; /* ajuste a cor conforme necessário */
+    text-decoration: none;
+    font-family: "Inter";
+    font-size: 38px;
+    font-weight: 600;
+}
+
+
+.info a:hover {
+    text-decoration: none;
+}

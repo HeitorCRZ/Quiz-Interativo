@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.3">
+    <link rel="stylesheet" type="text/css" href="../css/paginaLogada.css" media="screen" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <title>Pagina incial</title>
+</head>
+<body>
+    <div class="box">
+        <div class="faixainicial"> </div>
+        <h2>Seja bem-vindo <br>de volta!</h2>
+        <p>
+            Bem-vindo a sua conta! O que deseja fazer neste momento?       
+         </p>
+        <button class="botaoverdequad" type="button"  id = "btn-refazerQuiz">REFAZER QUIZ</button>
+        <div class="ou">ou</div>
+        <button class="botaovazioquad" type="button" id = "btn-resultados">VER SEU ÚLTIMO RESULTADO</button>
+    
+        <a href="../html/paginaInicial.html" class="sair">SAIR </a> 
+
+        <div class="caixabaixa">
+
+        </div>
+    </div>   
+</body>
+
+
+<script >
+    const mensage_error = document.getElementById("error-message")
+
+    const bntRefazerQuiz= document.getElementById("btn-refazerQuiz")
+    const btnResultados = document.getElementById("btn-resultados")
+
+    bntRefazerQuiz.onclick = function () {
+        window.location = "../html/quiz.html"
+
+    }
+
+
+    btnResultados.onclick = function () {
+        window.location = "../html/historicoUsuario.html";
+
+    }
+</script>
+</html>

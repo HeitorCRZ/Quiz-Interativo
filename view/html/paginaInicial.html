@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.285">
+    <link rel="stylesheet" type="text/css" href="../css/paginaInicial.css" media="screen" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <title>Pagina incial</title>
+</head>
+<body>
+        <div class="faixainicial"> </div>
+        <h2>Seja bem-vindo ao<br>Quiz da Univap!</h2>
+        <p>
+            Crie uma conta para salvar seus resultados, ou entre em uma conta anônima apenas para realizar o quiz.
+        </p>
+        <button class="botaoverdequad" type="button" id="btnCadastrar">CRIAR CONTA</button>
+        <div class="jatemconta">Já possui conta?</div>
+        <a href="../html/login.html" class="entrar">ENTRAR </a>
+        <div class="ou">ou</div>
+        <button class="botaovazioquad" type="button" id="btnEntrarAnonimo">ENTRAR SEM CONTA</button>
+        <div class="caixabaixa">
+            <a class="sobrecaixabaixa" href="../html/sobrenos.html">Sobre nós</a>
+            <a class="sobreprojeto" href="../html/sobreprojeto.html">Sobre o projeto</a>
+        </div>
+    </div>   
+</body>
+
+
+<script>
+     const mensage_error = document.getElementById("error-message")
+
+    const btnCadastrar= document.getElementById("btnCadastrar")
+    const btnAnonimo = document.getElementById("btnEntrarAnonimo")
+
+    btnCadastrar.onclick = function () {
+        window.location = '../html/cadastro.html'
+
+    }
+
+
+    btnAnonimo.onclick = function () {
+        localStorage.clear();
+        window.location = '../html/quiz.html'
+
+    }
+</script>
+</html>

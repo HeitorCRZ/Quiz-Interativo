@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+    background: #F1F1F1;
+    box-sizing: border-box;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.faixa {
+    width: 1366px;
+    height: 168px;
+    background: var(--TOQUECOR, #3F7856);
+    margin:  0px auto 150px auto;
+    
+}
+
+.faixainicial{
+    width: 1366px;
+    height: 126px;
+    background: #ffffff;
+    margin:  0px auto 150px auto;
+}
+
+.caixabaixa{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 300px;
+    background: var(--TOQUECOR, #3F7856);
+    padding-top: 62px;
+    margin: auto;
+
+}
+.sobrecaixabaixa{
+
+    display: block;
+    color: #FFF;
+    font-family: "Inter", system-ui;
+    font-size: 48px;
+    font-weight: 650;
+    line-height: 52px;
+    background-color: transparent;
+    text-decoration: none;
+    margin-bottom: 29px;
+}
+
+.sobreprojeto{
+    display: block;
+    color: #FFF;
+    font-family: "Inter", system-ui;
+    font-size: 48px;
+    font-weight: 650;
+    line-height: 52px;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+h2 {
+    color: var(--TOQUECOR, #3F7856);
+    text-align: center;
+    /* TITULO PRINCIPAL */
+    font-family: "Fjalla One", system-ui;
+    font-size: 128px;
+    font-weight: 400;
+    margin: 0 auto 97px auto
+}
+
+p{
+    color: #000;
+    text-align: center;
+    /* TEXTOS BASICOS */
+    font-family: "Inter", system-ui;
+    font-size: 50px;
+    font-weight: 400;
+    margin: 0 auto 315px auto;
+    word-wrap: break-word;
+}
+
+
+input {
+    width: 1170px;
+    height: 180px;
+    background-color:  #3F7856;
+    display: block;
+    border: none;
+    font-size: 70px;
+
+    margin: 0 auto 97px auto;
+    border-radius: 86px;
+
+}
+
+input::placeholder {
+    color: #FFF;
+    font-family: "Inter", system-ui;
+    font-size: 70px;
+    font-weight: 700;
+    padding-left: 70px;
+}
+
+input::content { 
+    color: #ffffff;
+
+}
+
+button { 
+    background-color:  #3F7856;
+    display: block;
+    border: none;
+    font-size: 70px;
+
+    width: 631px;
+    height: 161px;
+    border-radius: 86px;
+    margin: 0 auto 91px auto;
+
+    color: #FFF;
+
+    font-family: "Inter", system-ui;
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+.sair  { 
+    font-weight: bolder;
+    text-decoration: none;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    color:  #3F7856;
+    font-family: Inter;
+    font-size: 48px;
+    font-weight: 650;
+    line-height: 52px; 
+    margin-bottom: 452px;
+}
+
+
+.botaoverdequad{
+    width: 970px;
+    height: 235px;
+    flex-shrink: 0;
+    fill: var(--TOQUECOR, #3F7856);
+    border-radius: 85;
+    color: #FFF;
+    text-align: center;
+    font-family: "Inter", system-ui;
+    font-size: 50px;
+    font-weight: 800;
+}
+.botaovazioquad{
+    width: 970px;
+    height: 235px;
+    border-radius: 85px;
+    border: 5px solid #CFCFCF;
+    background: #F1F1F1;
+    color: #000;
+    font-family: Inter;
+    font-size: 50px;
+    font-weight: 800;
+    margin-bottom: 181px;
+}
+.jatemconta{
+    color: #000;
+    font-family: "Inter", system-ui;
+    font-size: 48px;
+    padding-top: 64px;
+    padding-bottom: 34px;
+    font-weight: 700;
+}
+.entrar{
+    color: var(--TOQUECOR, #3F7856);
+    font-family: "Inter", system-ui;
+    font-size: 48px;
+    font-weight: 650;
+    line-height: 52px;
+    padding-bottom: 60px;
+}
+.ou{
+    color: #000;
+    font-family: "Inter", system-ui;
+    font-size: 50px;
+    font-weight: 400;
+    padding-bottom: 64px;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.3">
+    <link rel="stylesheet" type="text/css" href="../css/login.css" media="screen" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <title>Login</title>
+</head>
+<body>
+    <div class="box">
+        <div class="faixa"> 
+            <button class="btn-voltar" id= "btnVoltar" type="button">< </button>
+
+        </div>
+        <h2>Login</h2>
+        <p>
+            Que bom ver você por aqui novamente! Faça login com suas informações e aproveite tudo o que quiz tem a oferecer!
+        </p>
+        
+            <input type="text" id="txtEmail" placeholder="Email:" autocomplete="off">>
+            <input type="password" id="txtSenha" placeholder="Senha:" autocomplete="off">>
+            <div id="error-message" class="errorMensagge" style="display: none;"> </div>
+
+        <button id = "btn-login" class="btn-cadastrar" type="button">ENTRAR</button>
+
+        <div class="possui-conta">
+            <p> Ainda não possui conta? </p>
+            <a href="../html/cadastro.html" class="login">CRIAR CONTA </a> 
+        </div>
+    </div>
+</body>
+
+<script > 
+    const emailUsuario = document.getElementById ("txtEmail")
+    const senhaUsuario = document.getElementById ("txtSenha")
+
+    const btnLogin = document.getElementById("btn-login")
+    const mensage_error = document.getElementById("error-message")
+    const bntVoltar = document.getElementById("btnVoltar")
+    bntVoltar.onclick = function ( ) { 
+        window.location = "../html/paginaInicial.html"
+    }
+
+
+    btnLogin.onclick = function ( ) { 
+        login ()
+    }
+
+    
+
+    function login () { 
+        const email = emailUsuario.value
+        const senha = senhaUsuario.value
+
+        if ( !email || !senha){
+            mensage_error.textContent = "Preencha todos os campos!"
+            mensage_error.style.display = "block"
+        }else {
+            mensage_error.style.display = "none"
+
+            const jsonEnvio = {
+                emailUsuario : email,
+                senhaUsuario : senha
+            }
+
+            let uri_login_usuario = "/usuarios/login"
+            fetch(uri_login_usuario, {
+                method:'post',
+                headers:{
+                'Accept': 'application/json',
+                'Content-Type':'application/json',
+                },
+                body: JSON.stringify(jsonEnvio)
+            }).then((response) => {
+                return response.json();
+            }).then((data) => {
+                console.log(data)
+                processarResultados(data)
+            }).catch((error) => {
+                console.error("Error:", error);
+
+            });
+
+        }
+    }
+
+    function processarResultados (texto_json){ 
+
+
+
+        try {
+            if (texto_json.status == false){
+
+                emailUsuario.value = "";
+                senhaUsuario.value = "";
+
+                emailUsuario.classList.add("errorButton");
+                senhaUsuario.classList.add("errorButton");
+
+                emailUsuario.placeholder = "Email invalido!";
+                senhaUsuario.placeholder = "Senhas invalido!";
+
+                return; // Para de executar se as senhas não forem iguais
+            } else {
+                emailUsuario.classList.remove("errorButton");
+                senhaUsuario.classList.remove("errorButton");
+                
+                localStorage.setItem("emailUsuario", emailUsuario.value); // Armazena o email no localStorage
+                window.location.href= "../html/paginalogada.html";
+            }   
+        }  catch (error) {
+        console.error("Erro ao processar o JSON:", error);
+        console.error("A resposta não é um JSON válido:", json);
+        }    
+    }
+ 
+</script>
+</html>

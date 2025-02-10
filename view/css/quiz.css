@@ -1,0 +1,116 @@
+* { 
+    margin: 0;
+    padding: 0;
+    background: #F1F1F1;
+    box-sizing: border-box;
+}
+
+.faixa {
+    width: 100%;
+    height: 168px; /* Altura da faixa superior */
+    background: var(--TOQUECOR, #3F7856);
+    margin: 0 auto 120px auto;
+}
+
+.questao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    max-width: 1170px;
+    height: 250px; /* Aumentei a altura da caixa da pergunta */
+    border-radius: 50px;
+    border: 5px solid var(--TOQUECOR, #3F7856);
+    background: #FBFBFB;
+    word-wrap: break-word;
+    color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 48px;
+    margin: 0 auto 100px auto; /* Aumentei o espaçamento inferior */
+    font-weight: 400;
+    text-align: center;
+    padding: 60px; /* Aumentei o padding para mais espaço em torno da pergunta */
+}
+
+.btn-voltar { 
+    font-size: 30px;
+    border: none;
+    color: #3F7856;
+    width: 262px;
+    height: 88px;
+    display: block;
+    margin: 208px auto 64px auto;
+    cursor: pointer;
+}
+
+.respostas-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.resposta:hover {
+    background-color: #3F7856;
+    color: #FFF;
+    transform: scale(1.05);
+}
+
+.resposta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    max-width: 1179px;
+    height: 160px; /* Aumentei a altura da resposta */
+    border-radius: 50px;
+    border: 5px solid var(--TOQUECOR, #3F7856);
+    background: #FBFBFB;
+    color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    text-align: center;
+    margin: 100px auto; /* Aumentei o espaçamento entre respostas */
+    padding: 40px; /* Aumentei o padding para mais espaço em torno das respostas */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.respostas button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 40px;
+    border-radius: 50px;
+    background: var(--TOQUECOR, #3F7856);
+    width: 900px ;
+    max-width: 1170px;
+    height: 150px;
+    color: #FFF;
+    font-family: "Inter", system-ui;
+    font-size: 40px;            
+}
+
+.btn-voltar { 
+    border-radius: 50px;
+    margin: 23px 0 22px 49px;
+    text-align: center;
+    font-size: 80px;
+    position: absolute;
+    width: 128px;
+    height: 120px;
+    background: #D9D9D9;
+}
+
+.faixa-fixa {
+    width: 100%;
+    height: 200px; /* Aumentei a altura da faixa fixa */
+    background: var(--TOQUECOR, #3F7856);
+    position: fixed;
+    bottom: 0; /* Mantém a faixa no rodapé da página */
+}

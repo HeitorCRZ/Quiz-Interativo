@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.3">
+    <title>Histórico</title>
+    <link rel="stylesheet" href="../css/historicoUsuario.css" media="screen" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- amCharts -->
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+</head>
+<body>
+    <div class="faixa"> 
+        <button class="btn-voltar" id="btnVoltar" type="button">&lt;</button>
+    </div>
+
+    <!-- Seção do Gráfico -->
+    <div id="chartdiv" class="d-flex justify-content-center"></div>
+    <style> 
+        #chartdiv {
+            width: 95%; /* Ajuste a largura */
+            height: 950px; /* Altura do gráfico */
+            margin-left: 6%; /* Move o gráfico para a direita */
+        }
+    </style>
+
+    <!-- Carousel do Bootstrap -->
+    <div id="slide" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" data-bs-pause="hover" data-bs-wrap="true">
+        <div class="carousel-inner" id="carouselContent">
+            <!-- Conteúdo será injetado via JavaScript -->
+        </div>
+        <!-- Controles do Carousel -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#slide" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#slide" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Próximo</span>
+        </button>
+    </div>
+
+    <!-- Seção de Links Finais -->
+    <div class="fim text-center mt-4">
+        <a class="sobrecaixabaixa me-3" href="../html/sobrenos.html">Sobre nós</a>
+        <a class="sobreprojeto ms-3" href="../html/sobreprojeto.html">Sobre o projeto</a>
+    </div>
+
+    <!-- Scripts Bootstrap e amCharts -->
+    <!-- Bootstrap JS Bundle (Inclui Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+       const emailUsuario = localStorage.getItem("emailUsuario");
+       let pontosUsuarios = null;
+       console.log("Email ------>", emailUsuario);
+
+       function processarPontos() {
+            const rota = `/respostas/buscar`;
+
+            return fetch(rota, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ Respostas_idUsuario: emailUsuario }) // Enviar como objeto JSON
+            }).then((response) => {
+                return response.json();
+            }).then((data) => {
+                console.log("Dados retornados do servidor:", data); // Log dos dados retornados
+                if (data.status == true) {  // Verifique o 'data.status', não 'response.status'
+                    pontosUsuarios = data.dados;
+                    console.log("Pontos do usuário:", pontosUsuarios); // Log dos pontos do usuário
+                } else {
+                    console.error("Erro ao buscar os pontos do banco");
+                }
+            }).catch((error) => {
+                console.log("Error ao buscar categorias:", error);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', async function () {
+            if (emailUsuario) {
+                try {
+                    await processarPontos(); // Aguarde a conclusão da função
+                } catch (error) {
+                    console.error("Erro na requisição fetch:", error);
+                }
+            } else {
+                pontosUsuarios = JSON.parse(localStorage.getItem("pontos"));
+                console.log("Pontos recuperados do localStorage:", pontosUsuarios); // Log dos pontos do localStorage
+            }
+
+            // Verificar se pontosUsuarios está preenchido
+            if (pontosUsuarios) {
+                console.log("Pontos do usuário para gráfico:", pontosUsuarios); // Log para verificação
+
+                var root = am5.Root.new("chartdiv");
+
+                root.setThemes([
+                    am5themes_Animated.new(root)
+                ]);
+
+                var chart = root.container.children.push(am5percent.PieChart.new(root, {
+                    layout: root.verticalLayout
+                }));
+
+                var series = chart.series.push(am5percent.PieSeries.new(root, {
+                    valueField: "value",
+                    categoryField: "category"
+                }));
+
+                var data = [];
+
+                // Logs para verificar cada categoria
+                if (pontosUsuarios.Pontos_Eletronica > 0) {
+                    console.log("Pontos em Eletrônica:", pontosUsuarios.Pontos_Eletronica);
+                    data.push({ value: pontosUsuarios.Pontos_Eletronica, category: "Eletrônica" });
+                }
+                if (pontosUsuarios.Pontos_Informatica > 0) {
+                    console.log("Pontos em Informática:", pontosUsuarios.Pontos_Informatica);
+                    data.push({ value: pontosUsuarios.Pontos_Informatica, category: "Informática" });
+                }
+                if (pontosUsuarios.Pontos_Analises > 0) { // Corrigido aqui para 'Pontos_Analises'
+                    console.log("Pontos em Análises Clínicas:", pontosUsuarios.Pontos_Analises);
+                    data.push({ value: pontosUsuarios.Pontos_Analises, category: "Análises Clínicas" });
+                }
+                if (pontosUsuarios.Pontos_Quimica > 0) {
+                    console.log("Pontos em Química:", pontosUsuarios.Pontos_Quimica);
+                    data.push({ value: pontosUsuarios.Pontos_Quimica, category: "Química" });
+                }
+                if (pontosUsuarios.Pontos_Publicidade > 0) {
+                    console.log("Pontos em Publicidade:", pontosUsuarios.Pontos_Publicidade);
+                    data.push({ value: pontosUsuarios.Pontos_Publicidade, category: "Publicidade" });
+                }
+                if (pontosUsuarios.Pontos_Administracao > 0) {
+                    console.log("Pontos em Administração:", pontosUsuarios.Pontos_Administracao);
+                    console.log("Categoria:", "Administração");
+                    data.push({ value: pontosUsuarios.Pontos_Administracao, category: "Administração" });
+
+                }
+
+                series.data.setAll(data);
+                console.log("Dados para o gráfico:", data); // Log dos dados a serem usados no gráfico
+
+                // Aumentar o tamanho das legendas
+                series.labels.template.setAll({
+                    fontSize: 25, // Aumenta o tamanho das legendas
+                });
+
+                // Montagem do carousel com base nos pontos
+                const carouselContent = document.getElementById("carouselContent");
+                let activeSet = false;
+
+                const cursos = [
+                    {
+                        pontos: pontosUsuarios.Pontos_Informatica,
+                        imagem: "../html/logos/informatica.jpeg",
+                        nome: "INFORMÁTICA",
+                        descricao: "O curso de informática oferece aos seus alunos um vasto conhecimento para desenvolver programas em diversas linguagens de programações que acompanham as tendências tecnológicas e do mercado de trabalho. Possibilitar o profissional formado atuar em empresas comerciais, industriais, instituições de pesquisas e até mesmo como microempresário individual. Neste curso o aluno é direcionado a pesquisar, entender, aplicar e aprender técnicas avançadas de programação, que podem ser utilizadas no desenvolvimento de softwares voltados para o gerenciamento da informação por meio de banco de dados, computação e animação gráfica, técnicas básicas de desenvolvimentos de jogos e programação para internet (sites)."
+                    },
+                    {
+                        pontos: pontosUsuarios.Pontos_Eletronica,
+                        imagem: "../html/logos/eletronica.jpeg",
+                        nome: "ELETRÔNICA",
+                        descricao: "O Curso Técnico em Eletrônica possui um currículo que atende às necessidades do mercado, formando profissionais aptos para atuar com competência nesse setor. Um dos objetivos do curso é formar um profissional que participe do desenvolvimento de projetos. Executa a instalação e a manutenção de equipamentos e sistemas eletrônicos e de automação. Realiza medições e testes com equipamentos eletrônicos. Executa procedimentos de controle de qualidade e gestão da produção de equipamentos eletrônicos dentre outras atuações essenciais do mercado."
+                    },
+                    {
+                        pontos: pontosUsuarios.Pontos_Administracao,
+                        imagem: "../html/logos/admin.jpeg",
+                        nome: "ADMINISTRAÇÃO",
+                        descricao: "Administrar, planejar, organizar e controlar as atividades empresariais, a fim de compreender a análise da produtividade, rentabilidade e controle de resultados. Esses são alguns dos objetivos do curso de Técnico em Administração de Empresas, nos quais o aluno busca motivação para o estudo da administração pública e privada de pequenas, médias e grandes empresas e de toda a complexa realidade que as envolve."
+                    },
+                    {
+                        pontos: pontosUsuarios.Pontos_Analises,
+                        imagem: "../html/logos/analises.jpeg",
+                        nome: "ANÁLISES CLÍNICAS",
+                        descricao: " O Curso Técnico em Análises Clínicas foi implantado para atender às necessidades na área das investigações médicas e biológicas. Prepara profissionais de nível médio para atuar em laboratórios de análises clínicas e/ou análises químicas, com competência técnica para desenvolver as atividades em laboratório de análises clínicas, de acordo com normas e procedimentos específicos."
+                    },
+                    {
+                        pontos: pontosUsuarios.Pontos_Quimica,
+                        imagem: "../html/logos/quimica.jpeg",
+                        nome: "QUÍMICA",
+                        descricao: "Desenvolver competências para analisar, pesquisar e produzir materiais e processos químicos, utilizando tecnologias avançadas para transformar a matéria-prima em produtos químicos e correlatos. Oferecer formação profissional adequada que permita a atuação em indústrias químicas, farmacêuticas, petroquímicas, de alimentos e bebidas, entre outras áreas."
+                    },
+                    {
+                        pontos: pontosUsuarios.Pontos_Publicidade,
+                        imagem: "../html/logos/publicidade.jpeg",
+                        nome: "PUBLICIDADE",
+                        descricao: "O Curso Técnico em Publicidade busca integrar esforços coletivos para tornar o aluno apto a desenvolver a criatividade e o planejamento necessário para a execução de campanhas publicitárias e eventos. Proporcionar uma formação profissional que atenda às necessidades do mercado publicitário, capacitando o aluno a compreender as diversas formas de comunicação e seu papel na sociedade."
+                    }
+                ];
+
+                cursos.forEach((curso, index) => {
+                    if (curso.pontos > 0) {
+                        console.log(`Adicionando curso: ${curso.nome} com ${curso.pontos} pontos`); // Log do curso
+                        const carouselItem = document.createElement("div");
+                        carouselItem.classList.add("carousel-item");
+                        if (!activeSet) {
+                            carouselItem.classList.add("active");
+                            activeSet = true;
+                        }
+
+                        carouselItem.innerHTML = `
+                            <div class="imagem text-center">
+                                <img src="${curso.imagem}" width="120" height="120" alt="${curso.nome}">
+                            </div>
+                            <div class="text-center fw-bold">${curso.nome}</div>
+                            <p>${curso.descricao}</p>
+                        `;
+
+                        carouselContent.appendChild(carouselItem);
+                    }
+                });
+            } else {
+                console.warn("Nenhum ponto de usuário encontrado."); // Log se não há pontos
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.3">
+    <link rel="stylesheet" type="text/css" href="../css/cadastro.css" media="screen" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <title>Cadastro</title>
+</head>
+<body>
+    <div class="box">
+        <div class="faixa"> 
+            <button class="btn-voltar" id="btnVoltar" type="button">< </button>
+        </div>
+        <h2>Criar conta</h2>
+        <p>
+            Você escolheu criar uma conta! Seus dados serão salvos, e você poderá realizar novos testes e revisitar seus resultados.
+        </p>
+        <input type="text" id="txtNome" placeholder="Nome:" autocomplete="off">
+        <input type="email" id="txtEmail" placeholder="Email:" required autocomplete="off">
+        <input type="password" id="txtSenha" placeholder="Senha:" autocomplete="off">
+        <div id="error-message" class="errorMessage" style="display: none;"></div>
+
+        <button id="btn-cadastrar" class="btn-cadastrar" type="button">Cadastrar</button>
+
+        <div class="possui-conta">
+            <p>Já possui conta? </p>
+            <a href="../html/login.html" class="login">ENTRAR</a> 
+        </div>
+    </div>
+</body>
+<script>
+    const nomeUsuario = document.getElementById("txtNome");
+    const emailUsuario = document.getElementById("txtEmail");
+    const senhaUsuario = document.getElementById("txtSenha");
+    const mensage_error = document.getElementById("error-message");
+
+    const bntCadastrar = document.getElementById("btn-cadastrar");
+    const bntVoltar = document.getElementById("btnVoltar");
+
+    bntVoltar.onclick = function () {
+        window.location = "../html/paginaInicial.html";
+    };
+
+    bntCadastrar.onclick = function () {
+        cadastrar();
+    };
+
+    function cadastrar() {
+        const nome = nomeUsuario.value;
+        const email = emailUsuario.value;
+        const senha = senhaUsuario.value;
+
+        if (!nome || !email || !senha) {
+            mensage_error.textContent = "Preencha todos os campos!";
+            mensage_error.style.display = "block";
+        } else {
+            mensage_error.style.display = "none";
+
+            const jsonEnvio = {
+                nomeUsuario: nome,
+                emailUsuario: email,
+                senhaUsuario: senha
+            };
+            console.log(jsonEnvio);
+
+            let uri_cadastrar_usuario = '/usuarios';
+
+            fetch(uri_cadastrar_usuario, {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonEnvio)
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                processarResultados(data);
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+        }
+    }
+
+   function processarResultados(json) {
+      try {
+          if (json.status === false) {
+              let text = json.codigo === 1 ? "Este email já está cadastrado!" : json.msg;
+              mensage_error.textContent = text;
+              mensage_error.style.display = "block";
+          } else if (json.status === true) {
+              // Armazena os dados do usuário, incluindo o e-mail no localStorage
+              localStorage.setItem("emailUsuario", json.emailUsuario || emailUsuario.value); // Use o email do JSON se disponível
+              window.location = "../html/quiz.html";
+          }
+      } catch (error) {
+          console.error("Erro ao processar o JSON:", error);
+          mensage_error.textContent = "Ocorreu um erro ao processar a resposta. Tente novamente."; // Mensagem amigável
+          mensage_error.style.display = "block";
+      }
+  }
+
+</script>
+</html>

@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    background: #F1F1F1;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+
+html, body {
+    height: 100%;
+}
+
+.faixa {
+    width: 100%; /* Manter a largura como 100% */
+    height: 168px; /* Altura padrão */
+    background: var(--TOQUECOR, #3F7856);
+    display: flex;
+    align-items: center; /* Centraliza verticalmente o conteúdo da faixa */
+    justify-content: left; /* Centraliza horizontalmente o conteúdo da faixa */
+}
+
+h2 {
+    color: var(--TOQUECOR, #3F7856);
+    font-family: "Fjalla One", system-ui;
+    text-align: center;
+    font-size: 128px;
+    font-weight: 400;
+    margin: 114px auto 40px auto;
+}
+
+p { 
+    color: #000;
+    text-align: center;
+    font-family: "Inter", system-ui;
+    font-size: 53px;
+    font-weight: 400;
+    margin: 0 20px 45px;
+}
+
+/* Outros estilos permanecem os mesmos */
+
+
+.introducao { 
+    margin: 150px auto 170px auto;
+    margin-bottom: 170px;
+    margin:  0px auto 150px auto;
+
+}
+
+.btn-voltar { 
+    border-radius: 86px;
+    margin: 23px 0 22px 49px;
+    text-align: center;
+    font-size: 80px;
+    position: absolute;
+    width: 128px;
+    height: 123px;
+    background: #D9D9D9;
+    border: none
+}
+
+
+
+
+
+/* Estilo geral do card */
+.card {
+    display: flex;
+    padding: 10px;
+    max-width: 1300px;
+}
+.container-esquerdo .card{
+    margin-left:  -10px;
+}
+
+/* Estilo para a imagem de perfil */
+.profile-img img {
+    
+    border-radius: 50%;
+    width: 290px;  /* ajuste o tamanho conforme necessário */
+    height: 290px; /* ajuste o tamanho conforme necessário */
+    object-fit: cover; /* para manter a proporção da imagem */
+}
+
+/* Estilo para o conteúdo de texto */
+.info {
+    align-self: flex-end;
+    margin-left: 15px;
+}
+
+
+
+.container-direito img { 
+    margin-left: 30px;
+    border-radius: 50%;
+    width: 290px;
+    height: 290px;
+}
+
+.container-direito a  { 
+    direction: rtl;
+
+    text-align: right;
+}
+
+.info-direita {
+    
+    align-self: flex-end;
+    margin-left: 0px;
+}
+.container-esquerdo {
+    margin: 10px auto 150px 40px; /* Margem esquerda e inferior */
+    width: 1000px;
+    height: 306px;
+}
+
+
+.container-direito {
+    margin-left: 450px; /* Empurra o contêiner para a extrema direita */
+    margin-bottom: 150px;
+    margin-top: 100px;
+    margin-right: 40px;
+    width: 900px;
+    display: flex;
+    flex-direction: column; /* Para organizar o conteúdo dentro do contêiner direito */
+    align-items: flex-end; /* Alinha o conteúdo à direita */
+}
+
+.container-direito .extra{
+    margin-left: -120px;
+}
+.container-esquerdo .extra{
+    margin-left: 10px;
+}
+.card-container {
+    width: 100%; /* Preenche toda a largura do pai */
+    display: flex; /* Para usar flexbox */
+    flex-direction: column; /* Colocar os itens em coluna */
+    align-items: flex-start; /* Alinhar os itens à esquerda */
+}
+/* Nome */
+.nomepessoa {
+    color: #3F7856; /* ajuste a cor conforme necessário */
+    margin: 0;
+    font-family: "Fjalla One", system-ui;
+    font-size: 70px;
+    font-weight: 500;
+}
+
+/* Texto de descrição */
+.info p {
+    margin: 5px 0;
+    text-align: justify;
+    font-family: "Inter", system-ui;
+
+    
+    color: #000;
+
+    font-size: 57px;
+    font-weight: 400;
+    line-height: 63px; /* 120% */
+}
+
+/* Link para o currículo */
+.info a {
+    color: #3F7856; /* ajuste a cor conforme necessário */
+    text-decoration: none;
+    font-family: "Inter", system-ui;
+
+    font-size: 45px;
+    font-weight: 600;
+}
+
+.info a:hover {
+    text-decoration: underline;
+    text-decoration: none;
+}
+
+
+
+.container-direito .nomepessoa  {
+    text-align: right;
+}
+
+
+
+
+.container-direito .info  {
+    direction: rtl;
+
+    margin-left: 0px;
+    margin-right: 15px;
+
+}
